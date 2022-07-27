@@ -46,5 +46,21 @@ class RomanNumeralServiceTest {
         assertThat(romanNumeralService.intToRomanNumeral(950)).isEqualTo("LM");
     }
 
+    @Test
+    public void shouldReturnPlaceValue() {
+        int num = 2679;
+
+        final int actualThousandPlaceValue = romanNumeralService.getPlaceValue(num, 1000);
+        final int actualHundredPlaceValue = romanNumeralService.getPlaceValue(num, 100);
+        final int actualTenthPlaceValue = romanNumeralService.getPlaceValue(num, 10);
+        final int actualUnitPlaceValue = romanNumeralService.getPlaceValue(num, 1);
+
+
+        assertThat(actualThousandPlaceValue).isEqualTo(2000);
+        assertThat(actualHundredPlaceValue).isEqualTo(600);
+        assertThat(actualTenthPlaceValue).isEqualTo(70);
+        assertThat(actualUnitPlaceValue).isEqualTo(9);
+    }
+
 
 }
