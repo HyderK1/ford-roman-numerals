@@ -25,7 +25,7 @@ class RomanNumeralServiceTest {
     }
 
     @Test
-    public void romanNumeralToInt_shouldReturnRomanNumeralForKeyIntegers() {
+    public void romanNumeralToInt_shouldReturnRomanNumeralBaseCaseIntegers() {
         assertThat(romanNumeralService.intToRomanNumeral(1)).isEqualTo("I");
         assertThat(romanNumeralService.intToRomanNumeral(5)).isEqualTo("V");
         assertThat(romanNumeralService.intToRomanNumeral(10)).isEqualTo("X");
@@ -33,6 +33,17 @@ class RomanNumeralServiceTest {
         assertThat(romanNumeralService.intToRomanNumeral(100)).isEqualTo("C");
         assertThat(romanNumeralService.intToRomanNumeral(500)).isEqualTo("D");
         assertThat(romanNumeralService.intToRomanNumeral(1000)).isEqualTo("M");
+    }
+
+    @Test
+    public void romanNumeralToInt_shouldReturnRomanNumeralForNonBaseCaseIntegers() {
+        assertThat(romanNumeralService.intToRomanNumeral(2)).isEqualTo("II");
+        assertThat(romanNumeralService.intToRomanNumeral(6)).isEqualTo("VI");
+        assertThat(romanNumeralService.intToRomanNumeral(9)).isEqualTo("IX");
+        assertThat(romanNumeralService.intToRomanNumeral(51)).isEqualTo("LI");
+        assertThat(romanNumeralService.intToRomanNumeral(101)).isEqualTo("CI");
+        assertThat(romanNumeralService.intToRomanNumeral(499)).isEqualTo("ID");
+        assertThat(romanNumeralService.intToRomanNumeral(950)).isEqualTo("LM");
     }
 
 
