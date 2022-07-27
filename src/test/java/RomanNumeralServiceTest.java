@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,8 +21,8 @@ class RomanNumeralServiceTest {
     public void romanNumeralToInt_shouldThrowWhenNumberIsNotInRange(int num) {
         assertThatThrownBy(() ->
                 romanNumeralService.intToRomanNumeral(num))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage("The number provided (%s) is not in the range 1-3000".formatted(num));
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("The number provided (%s) is not in the range 1-3000".formatted(num));
     }
 
     @Test
@@ -35,25 +36,20 @@ class RomanNumeralServiceTest {
         assertThat(romanNumeralService.intToRomanNumeral(1000)).isEqualTo("M");
     }
 
-    @Test
-    public void romanNumeralToInt_shouldReturnRomanNumeralForNonBaseCaseIntegers() {
-        assertThat(romanNumeralService.intToRomanNumeral(2)).isEqualTo("II");
-        assertThat(romanNumeralService.intToRomanNumeral(6)).isEqualTo("VI");
-        assertThat(romanNumeralService.intToRomanNumeral(9)).isEqualTo("IX");
-        assertThat(romanNumeralService.intToRomanNumeral(51)).isEqualTo("LI");
-        assertThat(romanNumeralService.intToRomanNumeral(101)).isEqualTo("CI");
-        assertThat(romanNumeralService.intToRomanNumeral(499)).isEqualTo("CDXCIX");
-        assertThat(romanNumeralService.intToRomanNumeral(950)).isEqualTo("CML");
+    @ParameterizedTest
+    @CsvFileSource(resources = "/integer_to_roman_numerals.csv")
+    public void romanNumeralToInt_shouldReturnRomanNumeralForNonBaseCaseIntegers(final int input, final String expectedValue) {
+        assertThat(romanNumeralService.intToRomanNumeral(input)).isEqualTo(expectedValue);
     }
 
     @Test
     public void shouldReturnPlaceValue() {
-        int num = 2679;
+        final var num = 2679;
 
-        final int actualThousandPlaceValue = romanNumeralService.getPlaceValue(num, 1000);
-        final int actualHundredPlaceValue = romanNumeralService.getPlaceValue(num, 100);
-        final int actualTenthPlaceValue = romanNumeralService.getPlaceValue(num, 10);
-        final int actualUnitPlaceValue = romanNumeralService.getPlaceValue(num, 1);
+        final var actualThousandPlaceValue = romanNumeralService.getPlaceValue(num, 1000);
+        final var actualHundredPlaceValue = romanNumeralService.getPlaceValue(num, 100);
+        final var actualTenthPlaceValue = romanNumeralService.getPlaceValue(num, 10);
+        final var actualUnitPlaceValue = romanNumeralService.getPlaceValue(num, 1);
 
 
         assertThat(actualThousandPlaceValue).isEqualTo(2000);

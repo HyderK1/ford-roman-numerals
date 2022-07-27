@@ -8,15 +8,15 @@ public class RomanNumeralService {
         this.romanNumerals = buildRomanNumerals();
     }
 
-    public String intToRomanNumeral(int num){
+    public String intToRomanNumeral(final int num) {
 
         if (num < 1 || num > 3000)
             throw new IllegalArgumentException("The number provided (%d) is not in the range 1-3000".formatted(num));
 
         return romanNumerals.get(getPlaceValue(num, 1000)) +
-               romanNumerals.get(getPlaceValue(num, 100)) +
-               romanNumerals.get(getPlaceValue(num, 10)) +
-               romanNumerals.get(getPlaceValue(num, 1));
+                romanNumerals.get(getPlaceValue(num, 100)) +
+                romanNumerals.get(getPlaceValue(num, 10)) +
+                romanNumerals.get(getPlaceValue(num, 1));
     }
 
     public int getPlaceValue(final int number, final int placeValue) {
