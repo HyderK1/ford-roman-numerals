@@ -23,10 +23,6 @@ public class RomanNumeralService {
         return (number / placeValue % 10) * placeValue;
     }
 
-    public int romanNumeralToInt(String romanNumeral){
-        return -1;
-    }
-
 
     private HashMap<Integer, String> buildRomanNumerals() {
         final var romanNumerals = new HashMap<Integer, String>();
