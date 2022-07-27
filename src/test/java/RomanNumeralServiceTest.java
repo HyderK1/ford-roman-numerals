@@ -42,8 +42,8 @@ class RomanNumeralServiceTest {
         assertThat(romanNumeralService.intToRomanNumeral(9)).isEqualTo("IX");
         assertThat(romanNumeralService.intToRomanNumeral(51)).isEqualTo("LI");
         assertThat(romanNumeralService.intToRomanNumeral(101)).isEqualTo("CI");
-        assertThat(romanNumeralService.intToRomanNumeral(499)).isEqualTo("ID");
-        assertThat(romanNumeralService.intToRomanNumeral(950)).isEqualTo("LM");
+        assertThat(romanNumeralService.intToRomanNumeral(499)).isEqualTo("CDXCIX");
+        assertThat(romanNumeralService.intToRomanNumeral(950)).isEqualTo("CML");
     }
 
     @Test

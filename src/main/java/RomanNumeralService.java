@@ -13,7 +13,10 @@ public class RomanNumeralService {
         if (num < 1 || num > 3000)
             throw new IllegalArgumentException("The number provided (%d) is not in the range 1-3000".formatted(num));
 
-        return romanNumerals.get(num);
+        return romanNumerals.get(getPlaceValue(num, 1000)) +
+               romanNumerals.get(getPlaceValue(num, 100)) +
+               romanNumerals.get(getPlaceValue(num, 10)) +
+               romanNumerals.get(getPlaceValue(num, 1));
     }
 
     public int getPlaceValue(final int number, final int placeValue) {
